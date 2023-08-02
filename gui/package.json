@@ -1,0 +1,67 @@
+{
+  "name": "multibot",
+  "productName": "MultiBot",
+  "author": "JMD",
+  "version": "2.0.0",
+  "main": "main.js",
+  "description": "Most advanced alt loader",
+  "homepage": "./",
+  "scripts": {
+    "build": "npm run build:renderer && electron-builder install-app-deps && npm run build:main",
+    "build:main": "electron-builder -c electron-builder.yml --dir",
+    "build:renderer": "react-scripts build",
+    "start": "concurrently --kill-others \"cross-env NODE_ENV=development node util.js\" \"npm run start:renderer\"",
+    "start:main": "cross-env NODE_ENV=development electron main.js",
+    "start:renderer": "cross-env NODE_ENV=development BROWSER=none react-scripts start",
+    "build:app": "npm run build:renderer && electron-builder install-app-deps",
+    "package:windows:ia32": "electron-builder -c electron-builder.yml --dir --windows --ia32 && node upload.js windows ia32",
+    "package:windows:x64": "electron-builder -c electron-builder.yml --dir --windows --x64 && node upload.js windows x64",
+    "package:linux:x64": "electron-builder -c electron-builder.yml --dir --linux --x64 && node upload.js linux x64",
+    "package:macos:arm64": "electron-builder -c electron-builder.yml --dir --mac --arm64 && node upload.js macos arm64",
+    "package:macos:x64": "electron-builder -c electron-builder.yml --dir --mac --x64 && node upload.js macos x64"
+  },
+  "devDependencies": {
+    "@types/node": "15.0.2",
+    "@types/react": "^17.0.9",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router": "^5.1.14",
+    "@types/react-router-dom": "^5.1.6",
+    "concurrently": "^6.0.2",
+    "cross-env": "^7.0.3",
+    "electron": "^13.1.8",
+    "electron-builder": "^22.11.1",
+    "form-data": "^2.3.3",
+    "react-refresh": "^0.10.0",
+    "react-scripts": "^5.0.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.4.0",
+    "@mui/styles": "^5.3.0",
+    "archiver": "^5.3.0",
+    "axios": "^0.26.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "request": "^2.88.2",
+    "tar": "^6.1.11",
+    "zip-a-folder": "^1.1.3",
+    "zip-lib": "^0.7.2",
+    "zlib": "^1.0.5"
+  },
+  "devEngines": {
+    "node": ">=10.x",
+    "npm": ">=6.x",
+    "yarn": ">=1.21.3"
+  },
+  "browserslist": {
+    "production": [
+      "last 1 electron version"
+    ],
+    "development": [
+      "last 1 electron version"
+    ]
+  }
+}

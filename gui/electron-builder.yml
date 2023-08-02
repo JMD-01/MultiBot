@@ -1,0 +1,40 @@
+appId: 'com.originmint.multibot'
+productName: 'MultiBot'
+extends: null
+copyright: 'Copyright © 2022 OriginMint'
+
+asar: true
+asarUnpack: '**\\*.{node,dll}'
+
+files:
+  - 'build/**/*'
+  - 'public/**/*'
+  - 'main.js'
+  - 'package.json'
+
+
+# Windows Configuration
+win:
+  icon: 'public/assets/windows/icon.ico'
+  target: [
+    'portable'
+  ]
+
+# macOS Configuration
+mac:
+  icon: 'public/assets/mac/icon.png'
+  target: [
+    'dmg'
+  ]
+
+# Linux Configuration
+linux:
+  icon: 'public/assets/linux/icon.png'
+  target: [
+    'AppImage'
+  ]
+
+
+directories:
+  buildResources: 'public/**/*'
+  output: 'release/${version}/${os}/${arch}'
